@@ -1,0 +1,50 @@
+def dfs(graph, start, visited=None):
+    if visited is None:
+        visited = set()
+    visited.add(start)
+
+    print(start)
+
+    for next in graph[start] - visited:
+        dfs(graph, next, visited)
+    return visited
+
+
+graph = {'A': set(['B', 'C']),
+         'B': set(['A', 'D', 'E']),
+         'C': set(['A','F','G']),
+         'D': set(['B']),
+         'E': set(['B']),
+         'F': set(['C']),
+         'G': set(['C'])}
+
+dfs(graph, 'A')
+
+***************************************************************
+
+graph = {'A': set(['B', 'C']),
+         'B': set(['A', 'D', 'E']),
+         'C': set(['A','F','G']),
+         'D': set(['B']),
+         'E': set(['B']),
+         'F': set(['C']),
+         'G': set(['C'])}
+
+visited = [] # List to keep track of visited nodes.
+queue = []     #Initialize a queue
+
+def bfs(visited, graph, node):
+  visited.append(node)
+  queue.append(node)
+
+  while queue:
+    s = queue.pop(0) 
+    print (s, end = " ") 
+
+    for neighbour in graph[s]:
+      if neighbour not in visited:
+        visited.append(neighbour)
+        queue.append(neighbour)
+
+# Driver Code
+bfs(visited, graph, 'A')
